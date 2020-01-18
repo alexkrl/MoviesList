@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="movie"
+            type="com.example.movieslisttask.model.Movie" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/movie_poster"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintHeight_percent="0.5"
+                android:transitionName="image_transition"
+                android:fitsSystemWindows="true"
+                android:scaleType="centerCrop"
+                app:posterPath="@{movie.posterPath}" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvMovieTitle"
+                android:padding="16dp"
+                android:layout_marginTop="3dp"
+                android:textSize="20sp"
+                android:text="@{movie.title}"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/movie_poster"
+                android:layout_marginStart="16dp"
+                tools:layout_constraintTop_creator ="1"
+                tools:layout_constraintLeft_creator ="1"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvMovieRating"
+                android:padding="16dp"
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@+id/tvMovieTitle"
+                android:text="@{Double.toString(movie.voteAverage)}"
+                android:layout_marginStart="16dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                tools:layout_constraintTop_creator="1" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvReleaseDate"
+                android:text="@{movie.releaseDate}"
+                android:padding="16dp"
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@+id/tvMovieRating"
+                app:layout_constraintLeft_toLeftOf="parent" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvPlotsynopsis"
+                android:text="@{movie.overview}"
+                android:padding="16dp"
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@+id/tvReleaseDate"
+                app:layout_constraintLeft_toLeftOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MoviesListTask</string>
+    <string name="title_popular_movies">Popular</string>
+    <string name="title_favorites_movies">Favorites</string>
+</resources>
