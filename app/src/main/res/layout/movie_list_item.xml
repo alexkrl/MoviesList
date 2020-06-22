@@ -4,7 +4,7 @@
     <data>
         <variable
             name="movie"
-            type="com.example.movieslisttask.model.Movie" />
+            type="com.example.movieslisttask.db.entities.Movie" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -20,19 +20,21 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:scaleType="center"
+                android:id="@+id/movie_poster"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:id="@+id/movie_poster"
                 android:transitionName="image_transition"
-                app:posterPath="@{movie.posterPath}"
-                app:layout_constraintDimensionRatio="H,8:12"/>
+                app:layout_constraintDimensionRatio="H,18:9"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                app:layout_constraintHeight_percent="0.15"
-                app:layout_constraintWidth_percent="0.15"
+
+                app:layout_constraintHeight_percent="0.25"
+                app:layout_constraintWidth_percent="0.25"
                 android:padding="4dp"
                 android:layout_margin="4dp"
                 android:background="@drawable/circle_background"
