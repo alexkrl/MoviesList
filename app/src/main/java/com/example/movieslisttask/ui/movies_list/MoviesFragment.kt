@@ -4,18 +4,18 @@ import android.app.Activity
 import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
+import android.util.Pair
 import android.view.View
 import android.widget.ImageView
-import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.example.movieslisttask.R
 import com.example.movieslisttask.db.entities.Movie
 import com.example.movieslisttask.tools.Consts
-import com.example.movieslisttask.ui.activities.MainActivity
 import com.example.movieslisttask.ui.activities.MovieInfoActivity
 import kotlinx.android.synthetic.main.fragment_movies.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.ArrayList
 
 
 /**
@@ -38,9 +38,18 @@ class MoviesFragment : Fragment(R.layout.fragment_movies), MovieAdapter.onMovieC
         })
     }
 
+    private var movieAdapter : MovieAdapter ? = null
+
     private fun initMoviesList(moviesData: List<Movie>) {
-        val movieAdapter = MovieAdapter(moviesData, this)
-        moviesList.adapter = movieAdapter
+        if (movieAdapter == null) {
+            println("ALEX_TAG - MoviesFragment->new adapter")
+            movieAdapter = MovieAdapter(moviesData as ArrayList<Movie>, this)
+            moviesList.adapter = movieAdapter
+        }
+        else {
+            println("ALEX_TAG - MoviesFragment->update adapter")
+            movieAdapter!!.setData(moviesData)
+        }
     }
 
     companion object {
@@ -58,8 +67,10 @@ class MoviesFragment : Fragment(R.layout.fragment_movies), MovieAdapter.onMovieC
     override fun openFullMovie(movie: Movie, image: ImageView) {
         val intent = Intent(activity, MovieInfoActivity::class.java)
         intent.putExtra("movie", movie)
-        val imagePair = android.util.Pair.create<View, String>(image, "image_transition")
-        val options = ActivityOptions.makeSceneTransitionAnimation(activity as Activity, imagePair)
+
+        val imagePair = Pair<View, String>(image, "image_transition")
+        val options = ActivityOptions.makeSceneTransitionAnimation(context as Activity?, imagePair)
+
         startActivity(intent, options.toBundle())
     }
 }

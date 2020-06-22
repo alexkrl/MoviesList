@@ -2,8 +2,6 @@ package com.example.movieslisttask.ui.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
-import com.example.movieslisttask.R
 import com.example.movieslisttask.databinding.ActivityMovieInfoBinding
 import com.example.movieslisttask.db.entities.Movie
 
@@ -12,11 +10,12 @@ import com.example.movieslisttask.db.entities.Movie
  */
 class MovieInfoActivity : AppCompatActivity() {
 
+    lateinit var binding: ActivityMovieInfoBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_movie_info)
-
-        val binding: ActivityMovieInfoBinding = DataBindingUtil.setContentView(this, R.layout.activity_movie_info)
+        binding = ActivityMovieInfoBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         if (intent.hasExtra("movie")) {
             val movie: Movie = intent.getParcelableExtra("movie")
             binding.movie = movie
