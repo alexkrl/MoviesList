@@ -4,7 +4,7 @@
     <data>
         <variable
             name="movie"
-            type="com.example.movieslisttask.model.Movie" />
+            type="com.example.movieslisttask.db.entities.Movie" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -20,26 +20,27 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:background="@color/colorPrimary"
+                android:scaleType="center"
+                android:id="@+id/movie_poster"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:id="@+id/movie_poster"
                 android:transitionName="image_transition"
-                app:posterPath="@{movie.posterPath}"
-                app:layout_constraintDimensionRatio="H,8:12"/>
+                app:layout_constraintDimensionRatio="H,2:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:loadImage="@{movie.posterPath}"
+                />
 
-            <ImageView
-                app:layout_constraintHeight_percent="0.15"
-                app:layout_constraintWidth_percent="0.15"
-                android:padding="4dp"
-                android:layout_margin="4dp"
-                android:background="@drawable/circle_background"
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                app:backgroundTint="@color/half_transparent_white"
+                android:layout_margin="8dp"
+                app:initFavorite="@{movie.favoriteMovie}"
                 app:layout_constraintEnd_toEndOf="@+id/movie_poster"
                 app:layout_constraintBottom_toBottomOf="@+id/movie_poster"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:id="@+id/favorite_indicator"
                 android:src="@drawable/ic_favorite_black_24dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>

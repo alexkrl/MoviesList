@@ -7,7 +7,7 @@
 
         <variable
             name="movie"
-            type="com.example.movieslisttask.model.Movie" />
+            type="com.example.movieslisttask.db.entities.Movie" />
     </data>
 
     <ScrollView
@@ -27,7 +27,8 @@
                 android:transitionName="image_transition"
                 android:fitsSystemWindows="true"
                 android:scaleType="centerCrop"
-                app:posterPath="@{movie.posterPath}" />
+                app:loadImage="@{movie.posterPath}"
+                />
 
             <TextView
                 android:layout_width="match_parent"
