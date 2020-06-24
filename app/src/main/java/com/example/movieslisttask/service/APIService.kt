@@ -4,7 +4,6 @@ import com.example.movieslisttask.service.responses.MoviesResponse
 import com.example.movieslisttask.tools.Consts
 import retrofit2.Response
 import retrofit2.http.GET
-import retrofit2.http.Query
 
 /**
  * Created by alexkorolov on 2020-01-15.

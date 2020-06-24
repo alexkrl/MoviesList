@@ -9,7 +9,7 @@ import com.example.movieslisttask.db.entities.Movie
  */
 class MovieViewHolder(val movieListItemBinding: MovieListItemBinding) : RecyclerView.ViewHolder(movieListItemBinding.root) {
 
-    fun bindClicks(clickActions: MovieAdapter.onMovieClicked, movie: Movie){
+    fun bindClicks(clickActions: MoviesAdapter.OnMovieClicked, movie: Movie) {
         movieListItemBinding.favoriteIndicator.setOnClickListener {
             clickActions.addToFavorite(movie)
         }

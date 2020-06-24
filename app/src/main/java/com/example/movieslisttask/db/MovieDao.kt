@@ -11,14 +11,14 @@ import com.example.movieslisttask.db.entities.Movie
 interface MovieDao {
 
     @get:Query("SELECT * from movies_table ORDER BY id ASC")
-    val allMovies: LiveData<List<Movie>>
+    val getAllMovies: LiveData<List<Movie>>
 
     @get:Query("SELECT * from movies_table WHERE favoriteMovie == 1 ORDER BY id ASC")
-    val favoriteMovies: LiveData<List<Movie>>
+    val getFavoriteMovies: LiveData<List<Movie>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertMovies(movieList: List<Movie?>?)
 
     @Update
-    fun update(movie: Movie?)
+    fun updateMovie(movie: Movie?)
 }

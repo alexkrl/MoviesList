@@ -15,49 +15,28 @@ import com.example.movieslisttask.tools.Consts
 import com.example.movieslisttask.ui.activities.MovieInfoActivity
 import kotlinx.android.synthetic.main.fragment_movies.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.util.ArrayList
 
 
 /**
  * Created by alexkorolov on 2020-01-17.
  */
-class MoviesFragment : Fragment(R.layout.fragment_movies), MovieAdapter.onMovieClicked {
+class MoviesFragment : Fragment(R.layout.fragment_movies), MoviesAdapter.OnMovieClicked {
 
     private val moviesViewModel: MoviesViewModel by viewModel()
     private var isFavoritesFrag = false
+    private var movieAdapter: MoviesAdapter = MoviesAdapter(listOf(), this)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         isFavoritesFrag = arguments?.getBoolean(Consts.SHOW_FAVORITES) ?: false
+        moviesList.adapter = movieAdapter
         getMovies()
     }
 
     private fun getMovies() {
-        moviesViewModel.getMovies(isFavoritesFrag).observe(viewLifecycleOwner, Observer {
-            initMoviesList(it)
+        moviesViewModel.getMovies(isFavoritesFrag).observe(viewLifecycleOwner, Observer { moviesList ->
+            movieAdapter.setData(moviesList)
         })
-    }
-
-    private var movieAdapter : MovieAdapter ? = null
-
-    private fun initMoviesList(moviesData: List<Movie>) {
-        if (movieAdapter == null) {
-            println("ALEX_TAG - MoviesFragment->new adapter")
-            movieAdapter = MovieAdapter(moviesData as ArrayList<Movie>, this)
-            moviesList.adapter = movieAdapter
-        }
-        else {
-            println("ALEX_TAG - MoviesFragment->update adapter")
-            movieAdapter!!.setData(moviesData)
-        }
-    }
-
-    companion object {
-        fun newInstance(favorites: Boolean) = MoviesFragment().apply {
-            arguments = Bundle().apply {
-                putBoolean(Consts.SHOW_FAVORITES, favorites)
-            }
-        }
     }
 
     override fun addToFavorite(movie: Movie) {
@@ -72,5 +51,13 @@ class MoviesFragment : Fragment(R.layout.fragment_movies), MovieAdapter.onMovieC
         val options = ActivityOptions.makeSceneTransitionAnimation(context as Activity?, imagePair)
 
         startActivity(intent, options.toBundle())
+    }
+
+    companion object {
+        fun newInstance(favorites: Boolean) = MoviesFragment().apply {
+            arguments = Bundle().apply {
+                putBoolean(Consts.SHOW_FAVORITES, favorites)
+            }
+        }
     }
 }

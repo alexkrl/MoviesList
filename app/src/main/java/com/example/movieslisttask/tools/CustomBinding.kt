@@ -7,7 +7,6 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.example.movieslisttask.R
-import com.example.movieslisttask.ui.movies_list.MovieViewHolder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
@@ -16,7 +15,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
  */
 
 @BindingAdapter("loadImage")
-fun bindingMoviePoster(imageHolder : ImageView, imageId : String){
+fun bindingMoviePoster(imageHolder: ImageView, imageId: String) {
     val imagePath = "https://image.tmdb.org/t/p/w500$imageId"
     Glide.with(imageHolder.context)
             .load(imagePath)

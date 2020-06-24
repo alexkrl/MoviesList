@@ -24,7 +24,7 @@ val appModule = module {
     single { getDatabase(get()) }
     single { createWebService() }
 
-    single { MovieRepository(get(), get()) }
+    factory { MovieRepository(get(), get()) }
 
     viewModel { MoviesViewModel(get()) }
 }

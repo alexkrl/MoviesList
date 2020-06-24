@@ -13,10 +13,9 @@ import kotlinx.android.synthetic.main.activity_main.*
  */
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
-    val popularMoviesFragment = MoviesFragment.newInstance(false)
-    val favoritesMoviesFragment = MoviesFragment.newInstance(true)
+    private val popularMoviesFragment = MoviesFragment.newInstance(false)
+    private val favoritesMoviesFragment = MoviesFragment.newInstance(true)
 
-    //    val fm = supportFragmentManager
     private var active: Fragment = popularMoviesFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +30,8 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                 .commit()
     }
 
-    private val navigationItemSelectedListener = label@ BottomNavigationView.OnNavigationItemSelectedListener {item ->
+    private val navigationItemSelectedListener =
+            label@ BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_popular -> {
                 supportFragmentManager.beginTransaction().hide(active).show(popularMoviesFragment).commit()

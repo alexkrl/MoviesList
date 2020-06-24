@@ -1,7 +1,6 @@
 package com.example.movieslisttask.ui.movies_list
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.movieslisttask.db.entities.Movie
@@ -14,25 +13,20 @@ import kotlinx.coroutines.launch
  */
 class MoviesViewModel(private val movieRepository: MovieRepository) : ViewModel() {
 
-    fun getMovies(isFavorite: Boolean) : LiveData<List<Movie>>{
-        var moviesToReturn = if (isFavorite) {
+    fun getMovies(isFavorite: Boolean): LiveData<List<Movie>> {
+        return if (isFavorite) {
             movieRepository.getFavoriteMovies()
-        } else{
+        } else {
             viewModelScope.launch(Dispatchers.IO) {
-                movieRepository.fetchMoviewFromAPI()
+                movieRepository.fetchPopularMoviesFromAPI()
             }
-            movieRepository.getMoviesFromAPI()
+            movieRepository.getPopularMovies()
         }
-        return moviesToReturn
     }
 
-    fun handleFavoriteMovie(movie: Movie){
-        viewModelScope.launch(Dispatchers.IO){
+    fun handleFavoriteMovie(movie: Movie) {
+        viewModelScope.launch(Dispatchers.IO) {
             movieRepository.updateMovie(movie)
         }
     }
-
-
-//    val allFavorites: LiveData<List<Movie?>?>?
-//        get() = movieRepository!!.allFavoriteMovies
 }

@@ -1,12 +1,9 @@
 package com.example.movieslisttask.db.entities
 
 import android.os.Parcelable
-import android.widget.ImageView
-import androidx.databinding.BindingAdapter
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
-import com.bumptech.glide.Glide
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 import java.util.*
