@@ -1,5 +1,5 @@
 # MoviesList
-This repository contains a detailed sample app that implements MVVM architecture using Retrofit, Room, Koin, Gradle Kotlin DSL
+This repository contains a detailed sample app that implements MVVM architecture using Retrofit, Room, Koin, DataBinding, Gradle Kotlin DSL
 
 
 ### License
