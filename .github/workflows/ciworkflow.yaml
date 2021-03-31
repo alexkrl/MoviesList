@@ -26,7 +26,8 @@ jobs:
       - uses: actions/upload-artifact@master
         with:
           name: app-release.apk
-          path: app/build/outputs/apk/release/app-release.apk
+          path: ${{ github.workspace }}
+
       # 5
       - uses: actions/upload-artifact@master
         with:
