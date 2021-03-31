@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.util.Pair
 import android.view.View
 import android.widget.ImageView
@@ -31,6 +32,7 @@ class MoviesFragment : Fragment(R.layout.fragment_movies), MoviesAdapter.OnMovie
         isFavoritesFrag = arguments?.getBoolean(Consts.SHOW_FAVORITES) ?: false
         moviesList.adapter = movieAdapter
         getMovies()
+        Log.e("ALEX", "onViewCreated: just a log")
     }
 
     private fun getMovies() {
