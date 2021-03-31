@@ -1,6 +1,7 @@
 package com.example.movieslisttask.ui.activities
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.movieslisttask.databinding.ActivityMovieInfoBinding
 import com.example.movieslisttask.db.entities.Movie
@@ -14,6 +15,7 @@ class MovieInfoActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.e("TAG", "onCreate: ")
         binding = ActivityMovieInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
         if (intent.hasExtra("movie")) {
