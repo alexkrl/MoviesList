@@ -15,7 +15,7 @@ class MovieInfoActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.e("TAG", "onCreate: ")
+        Log.e("TAG", "github actions testing")
         binding = ActivityMovieInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
         if (intent.hasExtra("movie")) {
