@@ -28,12 +28,12 @@
  * THE SOFTWARE.
  */
 
-const val kotlinVersion = "1.3.72"
+const val kotlinVersion = "1.4.32"
 
 object BuildPlugins {
 
   object Versions {
-    const val buildToolsVersion = "4.0.0"
+    const val buildToolsVersion = "7.0.0-alpha12"
   }
 
   const val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.buildToolsVersion}"
